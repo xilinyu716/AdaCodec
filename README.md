@@ -13,9 +13,7 @@ We propose **AdaCodec**, a two-stage optimization framework designed to mitigate
 ### Stage 1: Adaptive Codec for Activation Quantization
 
 Consider a linear layer:
-$
-Y = XW.
-$
+$Y = XW$
 
 We introduce a trainable **encoder–decoder pair** ($R_1$, $R_2$) around the activation:
 
