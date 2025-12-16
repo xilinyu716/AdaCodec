@@ -63,6 +63,8 @@ We evaluate on **LLaMA-2-7B** using the **WikiText-2** dataset. All experiments 
 | **GPTQ + AdaCodec**        | **5.42** |
 | Fine-Grained RHT           |   6.96   |
 | GPTQ + Fine-Grained RHT    |   5.76   |
+| Fine-Grained Learnable Rotation | 7.36 |
+| GPTQ + Fine-Grained Learnable Rotation | 6.35 |
 
 **Observation:** AdaCodec alone improves activation robustness, and when combined with GPTQ, it consistently outperforms vanilla GPTQ under NVFP4 W4A4 inference.
 
