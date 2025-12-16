@@ -52,7 +52,7 @@ At this stage:
 
 ## Experimental Results
 
-We evaluate on **LLaMA-2-7B** using the **WikiText-2** dataset. All experiments use **W4A4KV16** unless otherwise specified.
+We evaluate on **LLaMA-2-7B** using the **WikiText-2** dataset. All experiments use **W4A4KV16** unless otherwise specified. **Context Length** = 2048
 
 | Method                     |    PPL   |
 | :------------------------- | :------: |
