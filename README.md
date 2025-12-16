@@ -17,16 +17,16 @@ $Y = XW$
 
 We introduce a trainable **encoder–decoder pair** ($R_1$, $R_2$) around the activation:
 
-$\hat{X} = Q(X R_1) R_2$,
+$\hat{X} = Q(X R_1) R_2^T$,
 
 so that the linear layer becomes:
 
-$Y = Q(X R_1) R_2 W$.
+$Y = Q(X R_1) R_2^T W$.
 
 
 Key design choices:
 
-* $R_1$ and $R_2$ are initialized as Random Hadamard matrices.
+* $R_1$ and $R_2$ are initialized the same Random Hadamard matrices.
 * Both matrices are constrained to the **Stiefel manifold** (orthogonal matrices).
 * We use **block-diagonal structures** both to reduce overhead and to better fit fine-grained quantization:
   $R_i = \mathrm{diag}(R_{i1}, R_{i2}, \ldots, R_{in})$, $\quad i = 1,2$,
@@ -40,7 +40,7 @@ This stage exclusively targets **activation quantization**, making AdaCodec orth
 ### Stage 2: Decoder Fusion and Weight Quantization
 
 We fuse the decoder into the weight matrix and apply quantization:
-$Y = Q(X R_1), Q(R_2 W)$
+$Y = Q(X R_1)Q(R_2^T W)$
 
 At this stage:
 
