@@ -61,7 +61,7 @@ We evaluate on **LLaMA-2-7B** using the **WikiText-2** dataset. All experiments 
 | W16A16KV16                 |   5.47   |
 | RTN                        |   5.90   |
 | GPTQ                       |   5.83   |
-| AdaCodec (W16A4KV16 training, W4A4KV4 evaluation) |   6.15   |
+| AdaCodec (W16A4KV16 training, W4A4KV16 evaluation) |   6.15   |
 | **GPTQ + AdaCodec**        | **5.42** |
 | Fine-Grained RHT           |   6.96   |
 | GPTQ + Fine-Grained RHT    |   5.76   |
