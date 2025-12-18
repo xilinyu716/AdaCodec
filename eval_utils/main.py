@@ -27,7 +27,6 @@ def ptq_model(args, model, model_args=None):
     if args.rotate:
         
         
-        
         fuse_norm_utils.fuse_layer_norms(model)
         rotation_utils.rotate_model(model, args)
 

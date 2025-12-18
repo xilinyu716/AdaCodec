@@ -29,5 +29,5 @@ torchrun --nnodes=1 --nproc_per_node=4 ../ptq.py \
 --k_groupsize 128 \
 --v_groupsize 128 \
 --rotate \
---optimized_rotation_path "/localssd/hyzhang/spinquant/rotation/R.bin" \
+--optimized_rotation_path "/localssd/hyzhang/spinquant/Ablation/NVFP4/Llama-2-7b/AdaCodec/R.bin" \
 

@@ -9,7 +9,7 @@
 # nproc_per_node indicates the number of GPUs per node to employ.
 torchrun --nnodes=1 --nproc_per_node=4 ../optimize_rotation.py \
 --input_model /localssd/hyzhang/llama-2-7b-hf  \
---output_rotation_path /localssd/hyzhang/spinquant/rotation \
+--output_rotation_path /localssd/hyzhang/spinquant/Ablation/NVFP4/Llama-2-7b/AdaCodec \
 --output_dir /localssd/hyzhang/spinquant/output \
 --logging_dir /localssd/hyzhang/spinquant/log \
 --model_max_length 2048 \

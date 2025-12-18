@@ -752,6 +752,7 @@ class LlamaSdpaAttention(LlamaAttention):
         
         # debug: remove R2 to see the change in loss ===================
         # value_states = self.v_proj(hidden_states)
+
         value_states = self.v_proj(hidden_states, R1 = self.R1_v.weight, R2=self.R2.weight)
         # value_states = self.v_proj(hidden_states, R1)
         # end debug ==================================================
