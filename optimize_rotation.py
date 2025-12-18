@@ -125,11 +125,19 @@ def train() -> None:
     # debug: remove R2 then check the change of loss==================================
     for i in range(model.config.num_hidden_layers):
         # Each head dim = 128 for Llama model
+        
+        v_out_feature = model.model.layers[i].self_attn.v_proj.weight.shape[0]
+        o_in_feature = model.model.layers[i].self_attn.o_proj.weight.shape[-1]
+        repeat_times = o_in_feature // v_out_feature
+        
+        R2_block_size = 128
         R2 = block_hadamard_tensor(
-            model.config.hidden_size, block_size = 128
+            v_out_feature, block_size = R2_block_size
         )
+        
+        R2_hat = R2.repeat(1, repeat_times, 1).reshape((-1, R2_block_size, R2_block_size))
         model.model.layers[i].self_attn.R2 = RotateModule(R2)
-        model.model.layers[i].self_attn.R2_hat = RotateModule(R2)
+        model.model.layers[i].self_attn.R2_hat = RotateModule(R2_hat)
     # # end debug =============================================================
     
     # # debug: remove RM to check the change of loss ============================================

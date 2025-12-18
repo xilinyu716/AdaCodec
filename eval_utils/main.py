@@ -27,7 +27,6 @@ def ptq_model(args, model, model_args=None):
     if args.rotate:
         
         
-        
         fuse_norm_utils.fuse_layer_norms(model)
         rotation_utils.rotate_model(model, args)
 
@@ -66,27 +65,27 @@ def ptq_model(args, model, model_args=None):
             save_dict = torch.load(args.load_qmodel_path)
             model.load_state_dict(save_dict["model"])
 
-        elif not args.w_rtn:  # GPTQ Weight Quantization
+        # elif not args.w_rtn:  # GPTQ Weight Quantization
             
-            print("Quantization with GPTQ ............")
-            trainloader = data_utils.get_wikitext2(
-                nsamples=args.nsamples,
-                seed=args.seed,
-                model=model_args.input_model,
-                seqlen=2048,
-                eval_mode=False,
-            )
-            if args.export_to_et:
-                # quantize lm_head and embedding with 8bit per-channel quantization with rtn for executorch
-                quantizers = gptq_utils.rtn_fwrd(
-                    model,
-                    "cuda",
-                    args,
-                    custom_layers=[model.model.embed_tokens, model.lm_head],
-                )
-            # quantize other layers with gptq
-            quantizers = gptq_utils.gptq_fwrd(model, trainloader, "cuda", args)
-            save_dict["w_quantizers"] = quantizers
+        #     print("Quantization with GPTQ ............")
+        #     trainloader = data_utils.get_wikitext2(
+        #         nsamples=args.nsamples,
+        #         seed=args.seed,
+        #         model=model_args.input_model,
+        #         seqlen=2048,
+        #         eval_mode=False,
+        #     )
+        #     if args.export_to_et:
+        #         # quantize lm_head and embedding with 8bit per-channel quantization with rtn for executorch
+        #         quantizers = gptq_utils.rtn_fwrd(
+        #             model,
+        #             "cuda",
+        #             args,
+        #             custom_layers=[model.model.embed_tokens, model.lm_head],
+        #         )
+        #     # quantize other layers with gptq
+        #     quantizers = gptq_utils.gptq_fwrd(model, trainloader, "cuda", args)
+        #     save_dict["w_quantizers"] = quantizers
         else:  # RTN Weight Quantization
             # debug: check whether to use rtn =======================
             # print("Use RTN !!!!!!!!!!!!!!!!!!!!!!!")

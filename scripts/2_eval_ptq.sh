@@ -8,7 +8,7 @@
 # nnodes determines the number of GPU nodes to utilize (usually 1 for an 8 GPU node)
 # nproc_per_node indicates the number of GPUs per node to employ.
 torchrun --nnodes=1 --nproc_per_node=4 ../ptq.py \
---input_model /localssd/hyzhang/llama-2-7b-hf \
+--input_model /localssd/hyzhang/llama-3-8b-hf \
 --do_train False \
 --do_eval True \
 --per_device_eval_batch_size 4 \
@@ -29,5 +29,5 @@ torchrun --nnodes=1 --nproc_per_node=4 ../ptq.py \
 --k_groupsize 128 \
 --v_groupsize 128 \
 --rotate \
---optimized_rotation_path "/localssd/hyzhang/spinquant/rotation/R.bin" \
+--optimized_rotation_path "/localssd/hyzhang/spinquant/Ablation/NVFP4/Llama-3-8b/AdaCodec/R.bin" \
 
