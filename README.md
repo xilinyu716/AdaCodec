@@ -52,8 +52,9 @@ At this stage:
 
 ## Experimental Results
 
-We evaluate on **LLaMA-2-7B** using the **WikiText-2** dataset. All experiments use **W4A4KV16** unless otherwise specified. **Context Length** = 2048
+We evaluate on **LLaMA-2-7B** and **LLaMA-3-8b** using the **WikiText-2** dataset. All experiments use **W4A4KV16** unless otherwise specified. **Context Length** = 2048
 
+**Model: LLaMA-2-7b**
 | Method                     |    PPL   |
 | :------------------------- | :------: |
 | W16A16KV16                 |   5.47   |
@@ -65,6 +66,20 @@ We evaluate on **LLaMA-2-7B** using the **WikiText-2** dataset. All experiments 
 | GPTQ + Fine-Grained RHT    |   5.76   |
 | Fine-Grained Learnable Rotation | 7.36 |
 | GPTQ + Fine-Grained Learnable Rotation | 6.35 |
+
+
+**Model: LLaMA-3-8b**
+| Method                     |    PPL   |
+| :------------------------- | :------: |
+| W16A16KV16                 |   6.14   |
+| RTN                        |   7.03   |
+| GPTQ                       |   6.87  |
+| AdaCodec (W16A4KV16 training, W4A4KV16 evaluation) |   7.64   |
+| **GPTQ + AdaCodec**        | **6.74** |
+| Fine-Grained RHT           |   8.14   |
+| GPTQ + Fine-Grained RHT    |   6.92   |
+| Fine-Grained Learnable Rotation | 8.25 |
+| GPTQ + Fine-Grained Learnable Rotation | 7.72 |
 
 **Observation:** AdaCodec alone improves activation robustness, and when combined with GPTQ, it consistently outperforms vanilla GPTQ under NVFP4 W4A4 inference.
 
